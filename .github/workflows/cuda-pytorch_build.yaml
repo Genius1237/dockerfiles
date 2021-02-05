@@ -1,0 +1,27 @@
+name: Publish cuda pytorch image to registry
+
+on:
+  push:
+    branches: main
+    paths: cuda_pytorch/**
+
+jobs:
+  push_to_registry:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login to GitHub Packages Docker Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.CR_PAT }}
+      - name: Push to GitHub Packages
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: genius1237/cuda11.0_pytorch1.7.0
+          file: cuda_pytorch/Dockerfile
