@@ -1,5 +1,7 @@
 FROM rocm/rocm-terminal:4.0.1
 
+USER root:root
+
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive
 
