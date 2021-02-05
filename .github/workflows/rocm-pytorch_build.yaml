@@ -3,6 +3,7 @@ name: Publish rocm pytorch image to registry
 on:
   push:
     branches: main
+    paths: rocm_pytorch/**
 
 jobs:
   push_to_registry:
