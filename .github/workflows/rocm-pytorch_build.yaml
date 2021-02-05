@@ -22,6 +22,7 @@ jobs:
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v2
         with:
+          registry: ghcr.io
           push: true
           tags: genius1237/rocm4.0.1_pytorch1.7.0
           file: rocm_pytorch/Dockerfile
