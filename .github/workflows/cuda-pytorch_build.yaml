@@ -3,7 +3,9 @@ name: Publish cuda pytorch image to registry
 on:
   push:
     branches: main
-    paths: cuda_pytorch/**
+    paths: 
+      - cuda_pytorch/**
+      - .github/workflows/cuda-pytorch_build.yaml
 
 jobs:
   push_to_registry:
@@ -24,3 +26,4 @@ jobs:
         with:
           tags: ghcr.io/genius1237/cuda11.0_pytorch1.7.0
           file: cuda_pytorch/Dockerfile
+          push: true 
