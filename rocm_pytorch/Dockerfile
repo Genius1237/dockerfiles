@@ -1,4 +1,4 @@
-FROM rocm/rocm_terminal:4.0.1
+FROM rocm/rocm-terminal:4.0.1
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 ENV DEBIAN_FRONTEND noninteractive
