@@ -3,7 +3,9 @@ name: Publish rocm pytorch image to registry
 on:
   push:
     branches: main
-    paths: rocm_pytorch/**
+    paths: 
+        - rocm_pytorch/**
+        - .github/workflows/rocm-pytorch_build.yaml
 
 jobs:
   push_to_registry:
@@ -24,3 +26,4 @@ jobs:
         with:
           tags: ghcr.io/genius1237/rocm4.0.1_pytorch1.7.0
           file: rocm_pytorch/Dockerfile
+          push: true 
