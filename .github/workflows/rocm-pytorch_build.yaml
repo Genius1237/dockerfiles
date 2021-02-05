@@ -10,7 +10,6 @@ jobs:
   push_to_registry:
     runs-on: ubuntu-latest
     steps:
-    steps:
       - name: Check out the repo
         uses: actions/checkout@v2
       - name: Login to GitHub Packages Docker Registry
