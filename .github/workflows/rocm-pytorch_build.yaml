@@ -1,0 +1,27 @@
+name: Publish rocm pytorch image to registry
+
+on:
+  push:
+    branches: master
+    paths:
+      - rocm_pytorch/*
+
+jobs:
+  push_to_registry:
+    runs-on: ubuntu-latest
+    steps:
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Login to GitHub Packages Docker Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.CR_PAT }}
+      - name: Push to GitHub Packages
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: genius1237/rocm4.0-pytorch1.7
+          file: rocm_pytorch/Dockerfile
