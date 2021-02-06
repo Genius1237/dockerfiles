@@ -60,7 +60,14 @@ RUN wget -qO /tmp/miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-${
     rm /tmp/miniconda.sh && \
     find / -type d -name __pycache__ | xargs rm -rf
 
-RUN pip install torch==1.7.0
+RUN pip install torch==1.7.0+cu110 -f https://download.pytorch.org/whl/torch_stable.html
+
+RUN apt-get update && \
+    apt install -y cuda-libraries-dev-11-0 libcusparse-dev-11-0 libcublas-dev-11-0 && \
+    pip install -v --install-option="--cpp_ext" --install-option="--cuda_ext" 'git+https://github.com/nvidia/apex.git' && \
+    find / -type d -name __pycache__ | xargs rm -rf && \
+    apt-get clean -y && \
+    rm -rf /var/lib/apt/lists/*
 
 # Open-MPI installation
 ENV OPENMPI_VERSION 3.1.2
