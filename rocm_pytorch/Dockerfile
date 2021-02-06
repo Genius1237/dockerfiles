@@ -59,7 +59,8 @@ RUN wget -qO /tmp/miniconda.sh https://repo.continuum.io/miniconda/Miniconda3-${
 
 RUN pip install --pre torch -f https://download.pytorch.org/whl/nightly/rocm4.0/torch_nightly.html
 
-RUN apt-get install -y rocblas hipsparse rocthrust && \
+RUN apt-get update && \
+    apt-get install -y rocblas hipsparse rocthrust && \
     pip install -v --install-option="--cpp_ext" --install-option="--cuda_ext" 'git+https://github.com/ROCmSoftwarePlatform/apex.git' && \
     find / -type d -name __pycache__ | xargs rm -rf && \
     apt-get clean -y && \
